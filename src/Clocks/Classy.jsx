@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 export default class Clock extends React.Component {
     constructor(props) {
@@ -6,51 +6,60 @@ export default class Clock extends React.Component {
 
         this.state = {
             date: new Date(),
-            timer: null
-        }
+            timer: null,
+        };
     }
 
     componentDidMount() {
-        this.startClock()
+        this.startClock();
     }
 
     componentWillUnmount() {
-        this.stopClock()
+        this.stopClock();
     }
 
     startClock() {
         this.setState({
-            timer: setInterval(() => this.setState({
-                date: new Date()
-            }), 1000)
-        })
+            timer: setInterval(
+                () =>
+                    this.setState({
+                        date: new Date(),
+                    }),
+                1000
+            ),
+        });
     }
 
     stopClock() {
-        clearInterval(this.state.timer)
+        clearInterval(this.state.timer);
         this.setState({
-            timer: null
-        })
+            timer: null,
+        });
     }
 
     toggleClock() {
         if (this.state.timer) {
-            this.stopClock()
+            this.stopClock();
         } else {
-            this.startClock()
+            this.startClock();
         }
     }
 
     render() {
         const { remove, id } = this.props;
 
-        return ( <>
+        return (
+            <div>
                 <h1>A Classy Clock! ({id})</h1>
                 <h2>{this.state.date.toLocaleTimeString()}</h2>
 
-                <button onClick={() => this.toggleClock()}>{this.state.timer ? 'Stop' : 'Start'}</button>
-                <button onClick={remove}>Remove me!</button>
-            </>
-        )
+                <button className="toggle" onClick={() => this.toggleClock()}>
+                    {this.state.timer ? "Stop" : "Start"}
+                </button>
+                <button className="remove" onClick={remove}>
+                    Remove me!
+                </button>
+            </div>
+        );
     }
 }

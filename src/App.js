@@ -3,12 +3,12 @@ import "./App.css";
 
 import ClassyClock from "./Clocks/Classy";
 import FunctionalClock from "./Clocks/Functional";
+import DOMClock from "./Clocks/DOM";
 
 let clockIndex = 0;
+const getID = () => clockIndex++;
 
 function App() {
-    const getID = () => clockIndex++;
-
     const [clocks, setClocks] = useState([]);
 
     const addClock = (type) => () =>
@@ -35,6 +35,9 @@ function App() {
                 </button>
                 <button onClick={addClock(FunctionalClock)}>
                     Add a Functional Clock!
+                </button>
+                <button onClick={addClock(DOMClock)}>
+                    Add a DOM Clock!
                 </button>
 
                 {clocks.map(Clock)}
