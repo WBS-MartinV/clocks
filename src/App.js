@@ -11,11 +11,11 @@ const getID = () => clockIndex++;
 function App() {
     const [clocks, setClocks] = useState([]);
 
-    const addClock = (type) => () =>
+    const addClock = (type) => () => {
         setClocks(clocks.concat({ Type: type, id: getID() }));
+    }
 
     const removeClock = (index) => {
-        console.log("removing", index, clocks);
         setClocks(
             clocks.filter((item, i) => {
                 return i !== index;

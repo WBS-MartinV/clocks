@@ -55,7 +55,9 @@ export default ({ id }) => {
         return Clock;
     };
 
-    useEffect(() => DOM.current.appendChild(DOMClock(id)), []);
+    useEffect(() => {
+        DOM.current.appendChild(DOMClock(id));
+    }, []);
 
     return <div ref={DOM} />;
 };
